@@ -14,6 +14,7 @@ server_publishObj 			= compile preprocessFileLineNumbers "\z\addons\dayz_server\
 server_deleteObj 			= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_objectDelete.sqf";
 server_onPlayerDisconnect 	= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerDisconnect.sqf";
 server_updateObject 		= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_objectUpdate.sqf";
+server_updateNearbyObjects	= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_objectUpdateNearby.sqf";
 server_spawnWreck 			= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_spawnWreck.sqf";
 
 //onPlayerConnected 		"[_uid, _name] spawn server_onPlayerConnect;";
@@ -93,10 +94,6 @@ zombie_findOwner = {
 	diag_log ("CLEANUP: DELETE UNCONTROLLED ZOMBIE: " + (typeOf _unit) + " OF " + str(_unit) );
 
 	deleteVehicle _unit;
-};
-
-server_updateNearbyObjects = {
-	{ [_x, "gear"] call server_updateObject; } forEach nearestObjects [_this select 0, ["Car", "Helicopter", "Motorcycle", "Ship", "TentStorage", "tent2017"], 10];
 };
 
 server_hiveWrite = {
