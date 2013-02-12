@@ -1,10 +1,7 @@
-Set objFso = CreateObject("Scripting.FileSystemObject")
-Set Folder = objFSO.GetFolder("build\MPMissions")
+Set objFS = CreateObject("Scripting.FileSystemObject")
+strFolder = "build\MPMissions"
+Set objFolder = objFS.GetFolder(strFolder)
 
-For Each File In Folder.Files
-    sNewFile = File.Name
-    sNewFile = Replace(sNewFile,"dayz","rmod")
-    if (sNewFile<>File.Name) then 
-        File.Move(File.ParentFolder+"\"+sNewFile)
-    end if
+For Each Folder In objFolder.SubFolders
+	Folder.Name = Replace(Folder.Name, "dayz.", "dayz_1.")
 Next
