@@ -93,7 +93,7 @@ if (!_isNew) then {
 	_bcpk 		= getText (_config >> "backpack");
 	_randomSpot = true;
 	
-	if (CheckCustInv && _model == "") then {
+	if (CheckCustInv) then {
 		_key = format ["CHILD:999:select replace(cl.`inventory`, '""', '""""') inventory, replace(cl.`backpack`, '""', '""""') backpack, replace(coalesce(cl.`model`, 'Survivor2_DZ'), '""', '""""') model from `cust_loadout` cl join `cust_loadout_profile` clp on clp.`cust_loadout_id` = cl.`id` where clp.`unique_id` = '%1':[]:", _playerID];
 		_result = _key call server_hiveReadWrite;
 		_status = _result select 0;
