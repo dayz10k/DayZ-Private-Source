@@ -1,4 +1,4 @@
-private ["_position", "_num", "_config", "_itemType", "_itemChance", "_weights", "_index", "_iArray", "_crashModel", "_lootTable", "_lootDrops", "_frequency", "_variance", "_spawnChance", "_spawnMarker", "_spawnRadius", "_spawnFire", "_permanentFire", "_crashName"];
+private ["_position", "_num", "_config", "_itemType", "_itemChance", "_weights", "_index", "_iArray", "_crashModels", "_crashModel", "_lootTables", "_lootTable", "_lootDrops", "_frequency", "_variance", "_spawnChance", "_spawnMarker", "_spawnRadius", "_spawnFire", "_permanentFire", "_crashName"];
 
 _crashModels 		= _this select 0;
 _lootTables 		= _this select 1;
@@ -11,7 +11,7 @@ _spawnRadius 		= _this select 7;
 _spawnFire 			= _this select 8;
 _fadeFire 			= _this select 9;
 
-diag_log ("DEBUG: Spawning logic for " + str(_crashModel) + " started");
+diag_log ("DEBUG: Spawning logic for " + str(_crashModels) + " started");
 
 while {true} do {
 	private ["_timeAdjust", "_timeToSpawn", "_spawnRoll", "_crash", "_hasAdjustment", "_newHeight", "_adjustedPos"];
