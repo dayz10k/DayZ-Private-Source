@@ -70,22 +70,6 @@ if (!_isNew) then {
 	_model 		= _primary select 7;
 	_hiveVer 	= _primary select 8;
 	
-	if (CheckCustInv && _model == "") then {
-		_key = format ["CHILD:999:select replace(cl.`inventory`, '""', '""""') inventory, replace(cl.`backpack`, '""', '""""') backpack, replace(coalesce(cl.`model`, 'Survivor2_DZ'), '""', '""""') model from `cust_loadout` cl join `cust_loadout_profile` clp on clp.`cust_loadout_id` = cl.`id` where clp.`unique_id` = '%1':[]:", _playerID];
-		_result = _key call server_hiveReadWrite;
-		_status = _result select 0;
-
-		if (_status == "CustomStreamStart") then {
-			if ((_result select 1) > 0) then {
-				_result 	= _key call server_hiveReadWrite;
-				_inventory 	= call compile (_result select 0);
-				_backpack 	= call compile (_result select 1);
-				_model 		= call compile (_result select 2);
-				diag_log ("PLAYER: CUSTOM INVENTORY LOADED: " + str(_inventory));
-			};
-		};
-	};
-	
 	if (CheckModel) then {
 		if (!(_model in ["SurvivorW2_DZ", "Survivor2_DZ", "Survivor3_DZ", "Survivor2_1DZ", "Survivor2_2DZ", "Survivor2_3DZ", "Survivor3_DZ", "Survivor4_DZ", "Survivor4_1DZ", "Survivor4_2DZ", "Survivor4_3DZ", "Survivor8_DZ", "Survivor8_1DZ", "Survivor8_2DZ", "Survivor8_3DZ", "Sniper1_DZ", "Soldier1_DZ", "Camo1_DZ", "Bandit1_DZ", "BanditW1_DZ", "Bandit_S_DZ", "Bandit1_1DZ", "Bandit1_2DZ", "Bandit1_3DZ", "Bandit1_3_1DZ", "Bandit1_3_2DZ", "Bandit2_1DZ", "Bandit2_2DZ", "Bandit2_3DZ", "Bandit2_4DZ", "Bandit2_5DZ", "Bandit3_1", "Hero1_1DZ", "Hero1_2DZ", "Hero1_3DZ", "Hero1_4DZ", "Hero1_5DZ", "Hero1_6DZ", "Hero1_7DZ", "Hero2_1DZ", "Hero2_2DZ", "Hero2_3DZ", "Hero2_4DZ", "Hero2_5DZ", "Hero3_1DZ", "Hero3_2DZ", "Hero3_3DZ", "Hero3_4DZ", "Hero3_5DZ", "Hero3_6DZ", "Hero2_10DZ", "Rocket_DZ", "CamoWinter_DZN", "CamoWinterW_DZN", "Sniper1W_DZN", "pzn_dz_Contractor1_BAF", "pzn_dz_Contractor2_BAF", "pzn_dz_Contractor3_BAF", "Net_DZ", "Camo2_DZ", "Camo3_DZ", "Camo4_DZ ", "Camo5_DZ", "Santa1_DZ", "Beard_DZ", "Dimitry_DZ", "Alexej_DZ", "Stanislav_DZ", "Czech_Norris", "SG_IRA_Soldier_CO_DZ"])) then {
 			diag_log ("PLAYER: INVALID MODEL: " + str(_model));
@@ -108,6 +92,22 @@ if (!_isNew) then {
 	_wpns 		= getArray (_config >> "weapons");
 	_bcpk 		= getText (_config >> "backpack");
 	_randomSpot = true;
+	
+	if (CheckCustInv && _model == "") then {
+		_key = format ["CHILD:999:select replace(cl.`inventory`, '""', '""""') inventory, replace(cl.`backpack`, '""', '""""') backpack, replace(coalesce(cl.`model`, 'Survivor2_DZ'), '""', '""""') model from `cust_loadout` cl join `cust_loadout_profile` clp on clp.`cust_loadout_id` = cl.`id` where clp.`unique_id` = '%1':[]:", _playerID];
+		_result = _key call server_hiveReadWrite;
+		_status = _result select 0;
+
+		if (_status == "CustomStreamStart") then {
+			if ((_result select 1) > 0) then {
+				_result 	= _key call server_hiveReadWrite;
+				_inventory 	= call compile (_result select 0);
+				_backpack 	= call compile (_result select 1);
+				_model 		= call compile (_result select 2);
+				diag_log ("PLAYER: CUSTOM INVENTORY LOADED: " + str(_inventory));
+			};
+		};
+	};
 
 	_key = format["CHILD:203:%1:%2:%3:", _charID, [_wpns, _mags], [_bcpk, [], []]];
 	_key call server_hiveWrite;
