@@ -17,6 +17,14 @@ server_updateObject 		= compile preprocessFileLineNumbers "\z\addons\dayz_server
 server_updateNearbyObjects	= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_objectUpdateNearby.sqf";
 server_spawnWreck 			= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_spawnWreck.sqf";
 
+spawn_helis 				= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_heli.sqf";
+spawn_wrecks 				= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_wreck.sqf";
+spawn_care					= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_care.sqf";
+spawn_nchelis 				= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_ncheli.sqf";
+spawn_ncmedical				= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_ncmedical.sqf";
+spawn_plushuey 				= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_plushuey.sqf";
+spawn_plusblackhawk			= compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\spawn_plusblackhawk.sqf";
+
 //onPlayerConnected 		"[_uid, _name] spawn server_onPlayerConnect;";
 onPlayerDisconnected 		"[_uid, _name] call server_onPlayerDisconnect;";
 

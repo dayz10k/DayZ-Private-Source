@@ -205,33 +205,40 @@ allowConnection = true;
 // Spawn crashsites and wrecks ----------------------------------------------------------------------------------------
 
 if (SpawnHelis && worldName != "namalsk") then {
-	_count = 5;
-	#ifdef SpawnHelisCount
-	_count = SpawnHelisCount;
-	#endif
-
-	[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["Military", "HeliCrash", "MilitarySpecial"], _count, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
+	if (OldSpawn) then {
+		for "_x" from 1 to _count do { _id = [] spawn spawn_helis; };
+	} else {
+		[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["Military", "HeliCrash", "MilitarySpecial"], SpawnHelisCount, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
+	};
 };
 if (SpawnWrecks) then {
-	_count = 18;
-	#ifdef SpawnWrecksCount
-	_count = SpawnWrecksCount;
-	#endif
-
-	[["MV22Wreck", "LADAWreck", "BMP2Wreck", "MH60Wreck", "C130JWreck", "Mi24Wreck", "UralWreck", "HMMWVWreck", "T72Wreck"], ["Residential", "Industrial", "Military", "Farm", "Supermarket", "Hospital"], _count, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	if (OldSpawn) then {
+		for "_x" from 1 to _count do { _id = [] spawn spawn_wrecks; };
+	} else {
+		[["MV22Wreck", "LADAWreck", "BMP2Wreck", "MH60Wreck", "C130JWreck", "Mi24Wreck", "UralWreck", "HMMWVWreck", "T72Wreck"], ["Residential", "Industrial", "Military", "Farm", "Supermarket", "Hospital"], SpawnWrecksCount, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	};
 
 	if (dayz_plusversionNo != null) then {
-		[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["UH60Crash", "UH1YCrash"], 4, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
+		if (OldSpawn) then {
+			for "_x" from 1 to 3 do { _id = [] spawn spawn_plushuey; };
+			for "_x" from 1 to 2 do { _id = [] spawn spawn_plusblackhawk; };
+		} else {
+			[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["UH60Crash", "UH1YCrash"], 4, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
+		};
 	};
 };
 if (SpawnCare) then {
-	_count = 4;
-	#ifdef SpawnCareCount
-	_count = SpawnCareCount;
-	#endif
-
-	[["Misc_cargo_cont_net1", "Misc_cargo_cont_net2", "Misc_cargo_cont_net3"], ["Residential", "Industrial", "Military", "Farm", "Supermarket", "Hospital"], _count, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	if (OldSpawn) then {
+		for "_x" from 1 to _count do { _id = [] spawn spawn_care; };
+	} else {
+		[["Misc_cargo_cont_net1", "Misc_cargo_cont_net2", "Misc_cargo_cont_net3"], ["Residential", "Industrial", "Military", "Farm", "Supermarket", "Hospital"], SpawnCareCount, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	};
 };
 if (worldName == "namalsk") then {
-	[["Land_mi8_crashed", "Land_wreck_c130j_ep1", "Misc_cargo_cont_net1"], ["HeliCrashNamalsk", "HospitalNamalsk"], _count, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	if (OldSpawn) then {
+		for "_x" from 1 to 9 do { _id = [] spawn spawn_nchelis; };
+		for "_x" from 1 to 6 do { _id = [] spawn spawn_ncmedical; };
+	} else {
+		[["Land_mi8_crashed", "Land_wreck_c130j_ep1", "Misc_cargo_cont_net1"], ["HeliCrashNamalsk", "HospitalNamalsk"], 6, (50 * 60), (15 * 60), 0.75, 'center', 4000, false, false] spawn server_spawnWreck;
+	};
 };
