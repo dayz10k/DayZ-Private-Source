@@ -211,6 +211,10 @@ if (SpawnHelis && worldName != "namalsk") then {
 		[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["Military", "HeliCrash", "MilitarySpecial"], SpawnHelisCount, (50 * 60), (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
 	};
 };
+if (MixMode) then {
+	_MixModeCount=MixModeTime * 60;
+	[["UH60Wreck_DZ", "UH1Wreck_DZ"], ["Military", "HeliCrash", "MilitarySpecial"], SpawnHelisCount, _MixModeCount, (15 * 60), 0.75, 'center', 4000, true, false] spawn server_spawnWreck;
+	} else {};
 if (SpawnWrecks) then {
 	if (OldSpawn) then {
 		for "_x" from 1 to SpawnWrecksCount do { _id = [] spawn spawn_wrecks; };
