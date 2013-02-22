@@ -35,6 +35,13 @@
 //  OldSpawn false - Everything is in "server_spawnWreck", wrecks randomly de-/respawn while the server is running
 #define OldSpawn true
 
+// Combo of old heli spawns and new spawns
+//  MixMode true  - OldSpawn wrecks will spawn on server start, then defaul to the newer version after the server is running
+//  MixMode false - Defaults to whatever #define OldSpawn is set for
+// MixModeTime - defines time in minutes between server logic "rolls" to see if a new crash is generated
+#define MixMode true
+#define MixModeTime 50
+
 // Spawn helicopter crashsites
 //  SpawnHelis true  - Helicopter crashsites are spawned
 //  SpawnHelis false - No crashsites are spawned
