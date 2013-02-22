@@ -33,6 +33,7 @@ while {true} do {
 		_position = [getMarkerPos _spawnMarker, 0, _spawnRadius, 10, 0, 2000, 0] call BIS_fnc_findSafePos;
 
 		diag_log ("DEBUG: Spawning a " + str(_crashModel) + " at " + str(_position) + " with loot type " + str(_lootTable) + " and " + str(_lootDrops) + " total loot drops");
+		diag_log ("DEBUG: Spawning a crashed helicopter at " + str(_position));
 
 		// Create wreck vehicle object
 		_crash = createVehicle [_crashModel, _position, [], 0, "CAN_COLLIDE"];
